@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>nyimut nyimut</title>
+<link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@500;700&family=Fredoka:wght@400;500;600&family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<input class="hidden-input" type="checkbox" id="night">
+
+
+<span class="floating" style="--n:1" aria-hidden="true">♡</span>
+<span class="floating" style="--n:2" aria-hidden="true">✿</span>
+<span class="floating" style="--n:3" aria-hidden="true">★</span>
+<span class="floating" style="--n:4" aria-hidden="true">🍓</span>
+<span class="floating" style="--n:5" aria-hidden="true">🎀</span>
+<span class="floating" style="--n:6" aria-hidden="true">♡</span>
+<span class="floating" style="--n:7" aria-hidden="true">✿</span>
+<span class="floating" style="--n:8" aria-hidden="true">★</span>
+<span class="floating" style="--n:9" aria-hidden="true">🍓</span>
+<span class="floating" style="--n:10" aria-hidden="true">🎀</span>
+
+
+
+<div class="vine left" id="vineLeft" aria-hidden="true"></div>
+<div class="vine right" id="vineRight" aria-hidden="true"></div>
+
+<div class="frame">
+  
+  <input class="hidden-input" type="radio" name="category" id="cat-all" checked>
+  <input class="hidden-input" type="radio" name="category" id="cat-tops">
+  <input class="hidden-input" type="radio" name="category" id="cat-bottoms">
+  <input class="hidden-input" type="radio" name="category" id="cat-shoes">
+  <input class="hidden-input" type="radio" name="category" id="cat-bags">
+
+
+
+  <div class="titlebar">
+    <span>🎀 nyimut nyimut ♪ ∞</span>
+    <span class="window-buttons" aria-hidden="true"><button tabindex="-1">←</button><button tabindex="-1">⟳</button><button tabindex="-1">X</button></span>
+  </div>
+
+
+  <div class="banner gingham">
+    <div class="star" aria-hidden="true"><i class="gingham"></i></div>
+    <span class="clover" style="left:44%; top:4px" aria-hidden="true">🍀</span>
+    <span class="clover" style="left:62%; bottom:0" aria-hidden="true">🍀</span>
+    <span class="chick" aria-hidden="true">🐤</span>
+    <h1>nyimut<br>nyimut</h1>
+    <div class="drop-badge" aria-hidden="true">new drops fri ♡</div>
+    <div class="bunny" aria-hidden="true">🐰</div>
+  </div>
+
+  <div class="notice"><div>♪ new pre-loved treasures drop every friday ♪ one-of-a-kind finds ♪ free shipping over Rp 300.000 ♪ thank you for visiting! ♪</div></div>
+
+  <div class="columns">
+
+   
+    <nav class="box" aria-label="Shop categories">
+      <h2 class="box-title gingham">Shop</h2>
+      <div class="menu">
+        <label for="cat-all">All</label>
+        <label for="cat-tops">Tops</label>
+        <label for="cat-bottoms">Bottoms</label>
+        <label for="cat-shoes">Shoes</label>
+        <label for="cat-bags">Bags</label>
+      </div>
+      <h2 class="box-title gingham">Info</h2>
+      <div class="menu">
+        <a href="#about">About us</a>
+        <a href="#bag">My bag</a>
+        <a href="#welcome">Returns</a>
+      </div>
+      <div class="padded"><label class="night-btn" for="night">☾ night mode</label></div>
+    </nav>
+
+    <main class="box" id="welcome">
+      <div class="main-header"><span class="logo">nyimut♡</span><span style="font-size:2.6rem" aria-hidden="true">🧸</span></div>
+      <h2 class="bar">Welcome to nyimut nyimut!</h2>
+      <p class="intro">°˖✧(*´∀`)b✧˖° <b style="color:var(--pink)">NYIMUT!</b> ☆<br>Every piece here is pre-loved, hand-picked and one of a kind ～ Take a look around and find something that makes you smile! ♪(@´∀`p★)ﾟ</p>
+
+      <div class="products">
+     
+      <div class="item tops">
+        <div class="photo"><img src="photos/piano-tee.jpg" alt="Piano girl tee"><span class="sticker">1 pc ♡</span></div>
+        <h3>Piano girl tee</h3>
+        <p>cream tee with music notes</p>
+        <div class="price">Rp 75.000 <s>Rp 130.000</s></div>
+        <input class="hidden-input add-box" type="checkbox" id="add-1" style="--k:75">
+        <label class="add" for="add-1"></label>
+      </div>
+      <div class="item tops">
+        <div class="photo"><img src="photos/dolphin-tee.jpg" alt="Dolphin stripe long sleeve"><span class="sticker">1 pc ♡</span></div>
+        <h3>Dolphin stripe long sleeve</h3>
+        <p>layered look, blue stripes</p>
+        <div class="price">Rp 85.000 <s>Rp 150.000</s></div>
+        <input class="hidden-input add-box" type="checkbox" id="add-2" style="--k:85">
+        <label class="add" for="add-2"></label>
+      </div>
+      <div class="item bottoms">
+        <div class="photo"><img src="photos/fish-shorts.jpg" alt="Fishy patch denim shorts"><span class="sticker">1 pc ♡</span></div>
+        <h3>Fishy patch denim shorts</h3>
+        <p>hand-painted fish patches</p>
+        <div class="price">Rp 70.000 <s>Rp 125.000</s></div>
+        <input class="hidden-input add-box" type="checkbox" id="add-3" style="--k:70">
+        <label class="add" for="add-3"></label>
+      </div>
+      <div class="item tops">
+        <div class="photo"><img src="photos/goldfish-top.jpg" alt="Goldfish halter top"><span class="sticker">1 pc ♡</span></div>
+        <h3>Goldfish halter top</h3>
+        <p>lemon yellow, beaded ties</p>
+        <div class="price">Rp 35.000 <s>Rp 65.000</s></div>
+        <input class="hidden-input add-box" type="checkbox" id="add-4" style="--k:35">
+        <label class="add" for="add-4"></label>
+      </div>
+      <div class="item bags">
+        <div class="photo"><img src="photos/star-tote.jpg" alt="Blue star tote bag"><span class="sticker">1 pc ♡</span></div>
+        <h3>Blue star tote bag</h3>
+        <p>light nylon, star patches</p>
+        <div class="price">Rp 55.000 <s>Rp 95.000</s></div>
+        <input class="hidden-input add-box" type="checkbox" id="add-5" style="--k:55">
+        <label class="add" for="add-5"></label>
+      </div>
+      <div class="item bags">
+        <div class="photo"><img src="photos/apple-bag.jpg" alt="Apple crossbody bag"><span class="sticker">1 pc ♡</span></div>
+        <h3>Apple crossbody bag</h3>
+        <p>with apple core charm</p>
+        <div class="price">Rp 95.000 <s>Rp 160.000</s></div>
+        <input class="hidden-input add-box" type="checkbox" id="add-6" style="--k:95">
+        <label class="add" for="add-6"></label>
+      </div>
+      <div class="item tops">
+        <div class="photo"><img src="photos/apple-tee.jpg" alt="Angel apple soda tee"><span class="sticker">1 pc ♡</span></div>
+        <h3>Angel apple soda tee</h3>
+        <p>green sleeves, retro print</p>
+        <div class="price">Rp 60.000 <s>Rp 100.000</s></div>
+        <input class="hidden-input add-box" type="checkbox" id="add-7" style="--k:60">
+        <label class="add" for="add-7"></label>
+      </div>
+      <div class="item tops">
+        <div class="photo"><img src="photos/flan-tee.jpg" alt="Flan polka dot tee"><span class="sticker">1 pc ♡</span></div>
+        <h3>Flan polka dot tee</h3>
+        <p>pink dots, pudding print</p>
+        <div class="price">Rp 25.000 <s>Rp 45.000</s></div>
+        <input class="hidden-input add-box" type="checkbox" id="add-8" style="--k:25">
+        <label class="add" for="add-8"></label>
+      </div>
+      <div class="item bottoms">
+        <div class="photo"><img src="photos/gingham-skirt.jpg" alt="Gingham ruffle denim skirt"><span class="sticker">1 pc ♡</span></div>
+        <h3>Gingham ruffle denim skirt</h3>
+        <p>lace trim and pink bows</p>
+        <div class="price">Rp 120.000 <s>Rp 200.000</s></div>
+        <input class="hidden-input add-box" type="checkbox" id="add-9" style="--k:120">
+        <label class="add" for="add-9"></label>
+      </div>
+      <div class="item bottoms">
+        <div class="photo"><img src="photos/floral-skirt.jpg" alt="Floral ruffle mini skirt"><span class="sticker">1 pc ♡</span></div>
+        <h3>Floral ruffle mini skirt</h3>
+        <p>pom-pom drawstring</p>
+        <div class="price">Rp 110.000 <s>Rp 185.000</s></div>
+        <input class="hidden-input add-box" type="checkbox" id="add-10" style="--k:110">
+        <label class="add" for="add-10"></label>
+      </div>
+      <div class="item shoes">
+        <div class="photo"><img src="photos/mary-janes.jpg" alt="Bow mary jane platforms"><span class="sticker">1 pc ♡</span></div>
+        <h3>Bow mary jane platforms</h3>
+        <p>pink with mint bows</p>
+        <div class="price">Rp 200.000 <s>Rp 340.000</s></div>
+        <input class="hidden-input add-box" type="checkbox" id="add-11" style="--k:200">
+        <label class="add" for="add-11"></label>
+      </div>
+    </div>
+
+      <h2 class="bar" id="about">About us ♡</h2>
+      <p class="intro">Ini adalah web hasil rekayasa dari siswi SMAN 3 Bandung, Aira Hayya Madina, untuk kepentingan tugas akhir :3.</p>
+      <div class="small">nyimut nyimut 1.0 . running on love fuel～</div>
+    </main>
+
+  
+    <aside>
+      <div class="box">
+        <h2 class="box-title gingham">Drop days</h2>
+        <div class="padded">
+          <table class="calendar">
+            <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+            <tr><td>·</td><td>·</td><td>·</td><td>·</td><td>·</td><td class="drop-day">✿</td><td>·</td></tr>
+          </table>
+          <p style="font-size:.78rem; margin:6px 0 0">new drops every Friday ♡</p>
+        </div>
+      </div>
+
+    
+      <div class="box" id="bag">
+        <h2 class="box-title gingham">My bag</h2>
+        <div class="padded">
+          <p class="bag-empty">Your bag is empty (´･ω･`) Press "Add ♡" on something cute!</p>
+          <div class="bag-info">
+            <p class="bag-count"></p>
+            <div class="total"><span>Total</span><span class="bag-total"></span></div>
+          </div>
+          <a class="checkout" href="#thanks">Check out ♡</a>
+          <div class="message" id="thanks">this is a demo shop, so no payment was taken. thank you for visiting! ♪</div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+</body>
+</html>
