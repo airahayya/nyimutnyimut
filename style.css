@@ -1,4 +1,11 @@
+/* =====================================================
+   style.css = how the page LOOKS
+   Tip: change a color in section 1, save, and refresh the page!
+   ===================================================== */
 
+/* ---------- 1. COLORS AND FONTS ----------
+   Variables (--name) store a value once, so we can reuse it everywhere.
+   Change a variable here and it changes everywhere it is used. */
 :root {
   --font-body: 'Fredoka', 'Arial Rounded MT Bold', system-ui, sans-serif;
   --font-title: 'DynaPuff', 'Fredoka', system-ui, sans-serif;
@@ -13,27 +20,30 @@
   --link: #5b8fd6;
   --brown: #a08775;
 
-  --page: #ffffff;       
-  --page-pink: #ffe3ee;  
-  --frame: #f8dcb0;      
-  --paper: #ffffff;      
-  --panel: #fffaf3;      
+  --page: #ffffff;       /* page background */
+  --page-pink: #ffe3ee;  /* right edge of the page background */
+  --frame: #f8dcb0;      /* the peach window frame */
+  --paper: #ffffff;      /* white boxes */
+  --panel: #fffaf3;      /* product cards */
   --text: #4a3a42;
 
- 
+  /* keeps things away from phone notches */
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
+/* Night mode: when the hidden checkbox #night is checked (the "night mode" label
+   in the sidebar), the page gets darker values for the same variables.
+   :has() means "a body that contains something matching...". */
 body:has(#night:checked) {
   --page: #2b2036; --page-pink: #3a2440; --frame: #6b4a5a; --paper: #3b2c48; --panel: #46345a;
   --text: #fbeaf3; --link: #9fc4ff; --line: #c4648f; --brown: #c9a996;
   --pink-soft: #6a3a55; --butter: #5a4f3a; --mint: #3a5a48; --sky: #3a4a6a;
 }
 
-
-* { box-sizing: border-box; }   
+/* ---------- 2. PAGE BASICS ---------- */
+* { box-sizing: border-box; }   /* makes width/height include padding and border */
 
 html { scroll-behavior: smooth; }
 
@@ -44,15 +54,16 @@ body {
   line-height: 1.45;
   color: var(--text);
   background-color: var(--page);
- 
+  /* soft rainbow stripe on the left fading into pink on the right */
   background-image: linear-gradient(100deg, #ffe0ec 0, #fff7cf 6%, #dff6d8 10%, var(--page) 18%, var(--page) 70%, var(--page-pink) 100%);
   background-attachment: fixed;
 }
 
 button { font: inherit; color: inherit; cursor: pointer; }
-:focus-visible { outline: 3px solid #ff5a9e; outline-offset: 2px; }  
+:focus-visible { outline: 3px solid #ff5a9e; outline-offset: 2px; }  /* shows keyboard focus */
 
-
+/* Gingham (checkered) pattern. Other elements reuse this by adding class="gingham"
+   and setting their own --check color and --size. */
 .gingham {
   background-image:
     linear-gradient(90deg, var(--check) 50%, transparent 50%),
@@ -60,7 +71,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   background-size: var(--size) var(--size);
 }
 
-
+/* ---------- 3. DECORATIONS (side vines + floating hearts) ---------- */
 .vine {
   position: fixed; top: 0; bottom: 0; width: 48px;
   overflow: hidden; white-space: pre; text-align: center;
@@ -78,13 +89,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 @keyframes float-up { to { transform: translateY(-115vh) rotate(25deg); } }
 
-
+/* people who prefer less motion get no animations */
 @media (prefers-reduced-motion: reduce) {
   .floating { display: none; }
   .notice div { animation: none; padding-left: 10px; }
 }
 
-
+/* ---------- 4. WINDOW FRAME AND TITLE BAR ---------- */
 .frame {
   position: relative; z-index: 1;
   max-width: 980px; margin: 18px auto; padding: 12px;
@@ -108,7 +119,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   background: linear-gradient(#e6f3ff, #b8d8f5);
 }
 
-
+/* ---------- 5. BANNER ---------- */
 .banner {
   --check: rgba(255, 200, 120, .3); --size: 22px;
   position: relative; height: 230px; overflow: hidden;
@@ -128,7 +139,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .chick { position: absolute; left: 62px; bottom: 8px; font-size: 2rem; }
 .bunny { position: absolute; right: 4%; bottom: -8px; font-size: 9rem; line-height: 1; }
 
-.banner h1 {   
+.banner h1 {   /* the big shop name */
   position: absolute; left: clamp(150px, 30%, 300px); top: 16px; margin: 0;
   font-family: var(--font-name); font-weight: 400; letter-spacing: .02em;
   font-size: clamp(2rem, 7vw, 4.2rem);   /* clamp(smallest, flexible, biggest) */
@@ -142,6 +153,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   background: linear-gradient(#fff, #ffe0ee); box-shadow: 0 2px 0 var(--line);
 }
 
+/* scrolling pink message bar */
 .notice {
   margin: 10px 0; padding: 5px 0; overflow: hidden; white-space: nowrap;
   border: 2px solid #fff; border-radius: 6px; font-weight: 700; color: var(--pink); text-shadow: 1px 1px #fff;
@@ -150,19 +162,19 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .notice div { display: inline-block; padding-left: 100%; animation: scroll-left 26s linear infinite; }
 @keyframes scroll-left { to { transform: translateX(-100%); } }
 
-
+/* ---------- 6. LAYOUT: 3 COLUMNS (sidebar | main | right) ---------- */
 .columns {
   display: grid;
   grid-template-columns: 165px minmax(0, 1fr) 200px;
   gap: 10px; align-items: start;
 }
 
-.box {   
+.box {   /* every white box with a pink outline */
   margin-bottom: 12px; overflow: hidden;
   background: var(--paper); border: 3px solid #fff; border-radius: 8px;
   box-shadow: 0 0 0 2px #ffc7dc;
 }
-.box-title {   
+.box-title {   /* pink gingham heading at the top of a box */
   --check: rgba(255, 255, 255, .5); --size: 10px;
   margin: 0; padding: 4px; text-align: center;
   font-family: var(--font-title); font-size: .95rem; color: #fff; background-color: #ffb8d3;
@@ -170,7 +182,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .padded { padding: 8px 10px; }
 
-
+/* ---------- 7. SIDEBAR MENU ---------- */
 .menu > * {
   display: flex; align-items: center; gap: 7px; width: 100%;
   padding: 5px 8px; border: 0; border-bottom: 2px solid #fff;
@@ -184,7 +196,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .night-btn { padding: 1px 8px; border: 2px solid #fff; border-radius: 6px; font-size: .8rem; color: #3a5a9a; background: var(--sky); }
 
-
+/* ---------- 8. MAIN COLUMN ---------- */
 .main-header { display: flex; justify-content: space-between; align-items: center; padding: 6px 14px 0; }
 .logo { font-family: var(--font-name); font-size: 1.9rem; color: #ff9ec4; }
 .bar {   /* rainbow heading bar */
@@ -194,10 +206,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .intro { margin: 0; padding: 10px 14px; }
 .small { padding: 0 10px 6px; text-align: right; font-size: .75rem; opacity: .7; }
 
-
+/* ---------- 9. PRODUCT CARDS ---------- */
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));  
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));   /* as many columns as fit */
   gap: 12px; padding: 6px 12px 14px;
 }
 .item {
@@ -208,14 +220,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .item h3 { margin: 6px 0 0; font-size: .98rem; font-weight: 600; color: var(--link); }
 .item p { margin: 0; font-size: .82rem; opacity: .85; }
 
-.photo {   
+.photo {   /* square frame; the photo is cropped to fit inside it */
   position: relative; aspect-ratio: 1 / 1; padding: 4px;
   background: #fff; border: 2px solid var(--line); border-radius: 8px;
 }
 .photo img {
   position: absolute; inset: 4px; display: block;
   width: calc(100% - 8px); height: calc(100% - 8px);
-  object-fit: cover; border-radius: 6px;   
+  object-fit: cover; border-radius: 6px;   /* cover = crop to fill the square */
 }
 .sticker {
   position: absolute; right: -7px; top: -9px; padding: 1px 9px;
@@ -223,14 +235,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
   font-size: .72rem; font-weight: 600; color: #fff; background: var(--pink);
 }
 .price { font-weight: 700; font-size: 1.05rem; color: #ff6fa8; }
-.price s { font-weight: 400; font-size: .8rem; opacity: .65; }   
+.price s { font-weight: 400; font-size: .8rem; opacity: .65; }   /* <s> = crossed-out old price */
 .add {
   margin-top: 4px; padding: 2px 14px; font-weight: 700; color: #d6467f;
   border: 2px solid var(--line); border-radius: 99px;
   background: linear-gradient(#fff, #ffdfeb); box-shadow: 0 2px 0 var(--line);
 }
 
-
+/* ---------- 10. CALENDAR AND BAG (right column) ---------- */
 .calendar { width: 100%; border-collapse: separate; border-spacing: 2px; text-align: center; font-size: .78rem; }
 .calendar th { font-weight: 400; background: var(--mint); }
 .calendar td { padding: 2px 0; background: var(--pink-soft); }
@@ -244,7 +256,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   border: 2px solid #fff; border-radius: 99px; background: linear-gradient(#ffa6cb, #ff7fb4); box-shadow: 0 0 0 2px var(--line);
 }
 
-
+/* ---------- 11. SMALL SCREENS (phones) ---------- */
 @media (max-width: 1100px) { .vine { display: none; } }
 @media (max-width: 860px) {
   .columns { grid-template-columns: 1fr; }   /* stack the 3 columns */
@@ -254,18 +266,24 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .drop-badge { bottom: 14px; }
 }
 
-
+/* ---------- 12. CSS-ONLY TRICKS (this is how the shop works without JavaScript!) ----------
+   A checkbox or radio button remembers "on/off" by itself. We hide the real box
+   and use a <label> as the pretty button. The :checked selector lets CSS react.
+     A ~ B   means "B comes later, next to A (a later sibling)"
+     A + B   means "B comes right after A"                                       */
 
 .hidden-input { position: absolute; width: 0; height: 0; margin: 0; opacity: 0; pointer-events: none; }
 
-
+/* A) CATEGORY BUTTONS: choosing a radio hides the other categories.
+   Cards are NOT hidden with display:none, because hidden checkboxes would stop
+   counting in the bag. position:absolute with size 0 takes them out of the layout. */
 #cat-tops:checked ~ .columns .item:not(.tops),
 #cat-bottoms:checked ~ .columns .item:not(.bottoms),
 #cat-shoes:checked ~ .columns .item:not(.shoes),
 #cat-bags:checked ~ .columns .item:not(.bags) {
   position: absolute; width: 0; height: 0; padding: 0; border: 0; overflow: hidden; visibility: hidden;
 }
-
+/* the selected category looks bold and pink */
 #cat-all:checked ~ .columns label[for="cat-all"],
 #cat-tops:checked ~ .columns label[for="cat-tops"],
 #cat-bottoms:checked ~ .columns label[for="cat-bottoms"],
@@ -273,28 +291,92 @@ button { font: inherit; color: inherit; cursor: pointer; }
 #cat-bags:checked ~ .columns label[for="cat-bags"] { font-weight: 700; color: #ff5a9e; }
 .menu label { cursor: pointer; }
 
-
+/* B) "ADD TO BAG" BUTTONS: the label shows text from CSS (content), and changes when checked */
 .add { display: inline-block; cursor: pointer; }
 .add::before { content: "Add ♡"; }
 .add-box:checked + .add::before { content: "In bag ✓"; }
 .add-box:checked + .add { color: inherit; background: var(--mint); box-shadow: none; }
 .add-box:focus-visible + .add { outline: 3px solid #ff5a9e; outline-offset: 2px; }
 
+/* C) BAG, TOTAL AND DISCOUNT: maths with CSS variables.
+   When a product is checked, .frame gets two variables for it: --pN (its price in
+   thousands) and --cN (the number 1, for counting). Products that are not checked
+   have no variable, so var(--p1, 0) falls back to 0. calc() then adds everything up.
+   If you add a product, add one line here too (and use the same price as in the HTML). */
+.frame:has(#add-1:checked) { --p1: 75; --c1: 1; }
+.frame:has(#add-2:checked) { --p2: 85; --c2: 1; }
+.frame:has(#add-3:checked) { --p3: 70; --c3: 1; }
+.frame:has(#add-4:checked) { --p4: 35; --c4: 1; }
+.frame:has(#add-5:checked) { --p5: 55; --c5: 1; }
+.frame:has(#add-6:checked) { --p6: 95; --c6: 1; }
+.frame:has(#add-7:checked) { --p7: 60; --c7: 1; }
+.frame:has(#add-8:checked) { --p8: 25; --c8: 1; }
+.frame:has(#add-9:checked) { --p9: 120; --c9: 1; }
+.frame:has(#add-10:checked) { --p10: 110; --c10: 1; }
+.frame:has(#add-11:checked) { --p11: 200; --c11: 1; }
 
-.frame { counter-reset: bag-count 0 bag-total 0; }
-.add-box:checked { counter-increment: bag-count 1 bag-total var(--k); }
+.frame {
+  --count: calc(var(--c1, 0) + var(--c2, 0) + var(--c3, 0) + var(--c4, 0) + var(--c5, 0) + var(--c6, 0) + var(--c7, 0) + var(--c8, 0) + var(--c9, 0) + var(--c10, 0) + var(--c11, 0));
+  --sum: calc(var(--p1, 0) + var(--p2, 0) + var(--p3, 0) + var(--p4, 0) + var(--p5, 0) + var(--p6, 0) + var(--p7, 0) + var(--p8, 0) + var(--p9, 0) + var(--p10, 0) + var(--p11, 0));              /* subtotal, in thousands of rupiah */
+  --rate: 100;                          /* pay 100% = no discount */
+  --units: calc(var(--sum) * var(--rate) / 25);              /* amount to pay, in steps of Rp 250 */
+  --save-units: calc(var(--sum) * (100 - var(--rate)) / 25); /* amount saved, in steps of Rp 250 */
+}
+
+/* The discount: if the code box is not empty and matches its pattern (ANKRAS), pay only 85% */
+.frame:has(#code:valid:not(:placeholder-shown)) { --rate: 85; }
+
+/* Showing numbers: a counter can print a number, so we put our variable into a counter.
+   Rp 63.750 = "63" + "." + "750". round() and mod() cut the number in two parts,
+   and @counter-style turns 0,1,2,3 into the text 000, 250, 500, 750. */
+@counter-style quarter { system: fixed 0; symbols: "000" "250" "500" "750"; }
+
+.bag-count::before, .sum-count::before { counter-reset: n var(--count); content: counter(n); }
+.bag-count::after { content: " in your bag"; }
+.sum-subtotal::before { counter-reset: t var(--sum); content: "Rp " counter(t) ".000"; }
+.bag-total::before, .sum-pay::before {
+  counter-reset: w round(down, var(--units) / 4) q mod(var(--units), 4);
+  content: "Rp " counter(w) "." counter(q, quarter);
+}
+.sum-save::before {
+  counter-reset: w round(down, var(--save-units) / 4) q mod(var(--save-units), 4);
+  content: "-Rp " counter(w) "." counter(q, quarter);
+}
+
 .bag-count { margin: 0 0 4px; font-size: .85rem; }
-.bag-count::before { content: counter(bag-count) " in your bag"; }
-.bag-total::before { content: "Rp " counter(bag-total) ".000"; }
 .bag-empty { margin: 0 0 8px; font-size: .85rem; }
-.bag-info { display: none; }                                         
+.bag-info { display: none; }                                         /* hidden until something is in the bag */
 .frame:has(.add-box:checked) .bag-info { display: block; }
 .frame:has(.add-box:checked) .bag-empty { display: none; }
 
+/* Code feedback messages */
+.code-ok, .code-bad { display: none; }
+.summary .row.discount-row { display: none; }   /* 3 classes = more specific than ".summary .row", so this wins */
+.frame:has(#code:valid:not(:placeholder-shown)) .code-ok { display: block; }
+.frame:has(#code:valid:not(:placeholder-shown)) .discount-row { display: flex; }
+.frame:has(#code:invalid) .code-bad { display: block; }              /* :invalid = something typed that does not match */
+.code-ok, .code-bad { margin: 0; font-size: .85rem; }
+.code-ok { color: #2f9e55; }
+.code-bad { color: #d6467f; }
 
+/* The order form */
+.order { display: grid; gap: 6px; max-width: 480px; padding: 10px 14px 14px; }
+.order label { font-weight: 600; }
+.order input, .order textarea {
+  padding: 6px 10px; font: inherit; color: var(--text);
+  background: var(--panel); border: 2px dotted var(--line); border-radius: 8px;
+}
+.summary { padding: 8px 10px; border: 2px dashed var(--line); border-radius: 10px; }
+.summary .row { display: flex; justify-content: space-between; }
+.pay-row { font-weight: 700; font-size: 1.1rem; color: #ff6fa8; }
+.place-order { cursor: pointer; }
+.intro a, .message a { font-weight: 600; color: var(--link); }
+
+/* D) CHECK OUT MESSAGE: the link points to #thanks, and :target styles the element being pointed at */
 .checkout { display: block; text-align: center; text-decoration: none; }
 .message { display: none; margin-top: 6px; font-size: .8rem; }
 .message:target { display: block; }
+
 
 .vine {
   background:
